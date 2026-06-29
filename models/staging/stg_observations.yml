@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: weather
+    schema: weather
+    tables:
+      - name: observations
+        description: "Сырые погодные наблюдения из ETL-пайплайна"
+        columns:
+          - name: id
+            description: "Уникальный идентификатор наблюдения"
+            tests:
+              - unique
+              - not_null
+          - name: city
+            tests:
+              - not_null
+          - name: temperature_c
+            tests:
+              - not_null
+
+models:
+  - name: stg_observations
+    description: "Стейджинг-слой погодных наблюдений с категоризацией"
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: temp_category
+        tests:
+          - accepted_values:
+              values: ['мороз', 'холодно', 'прохладно', 'тепло', 'жарко']

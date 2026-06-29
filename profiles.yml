@@ -1,0 +1,12 @@
+weather_platform:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5432
+      user: airflow
+      password: airflow
+      dbname: weather
+      schema: dbt
+      threads: 4

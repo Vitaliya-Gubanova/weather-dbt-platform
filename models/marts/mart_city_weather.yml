@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: mart_city_weather
+    description: "Сводная статистика по городам за всё время наблюдений"
+    columns:
+      - name: city
+        tests:
+          - unique
+          - not_null
+      - name: avg_temp_c
+        tests:
+          - not_null
+      - name: temp_rank
+        tests:
+          - not_null
+
+  - name: mart_weather_trends
+    description: "Тренды температуры с оконными функциями и скользящим средним"
+    columns:
+      - name: city
+        tests:
+          - not_null
+      - name: observed_at
+        tests:
+          - not_null
